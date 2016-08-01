@@ -1,0 +1,55 @@
+-- This file has been generated from package.yaml by hpack version 0.14.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hs-exchange
+version:        0.1.0.0
+description:    Please see README.md
+homepage:       http://github.com/jkarni/hs-exchange#readme
+bug-reports:    https://github.com/jkarni/hs-exchange/issues
+author:         Julian K. Arni
+maintainer:     jkarni@gmail.com
+copyright:      (c) Julian K. Arni
+license:        BSD3
+license-file:   LICENSE
+tested-with:    GHC == 7.8.3, GHC == 7.10.2, GHC == 8.0.1
+build-type:     Simple
+cabal-version:  >= 1.10
+
+source-repository head
+  type: git
+  location: https://github.com/jkarni/hs-exchange
+
+library
+  hs-source-dirs:
+      src
+  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveFunctor DeriveGeneric DeriveFoldable DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses OverloadedStrings RankNTypes ScopedTypeVariables TypeOperators
+  ghc-options: -Wall
+  build-depends:
+      base >= 4.7 && < 4.10
+    , text
+    , servant
+    , servant-quickcheck
+    , hspec
+  exposed-modules:
+      Mockingbird
+  default-language: Haskell2010
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveFunctor DeriveGeneric DeriveFoldable DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses OverloadedStrings RankNTypes ScopedTypeVariables TypeOperators
+  ghc-options: -Wall
+  build-depends:
+      base >= 4.7 && < 4.10
+    , text
+    , servant
+    , servant-quickcheck
+    , hspec
+    , hs-exchange
+    , hspec > 2 && < 3
+    , QuickCheck >= 2.8 && < 2.9
+    , process
+  default-language: Haskell2010
