@@ -1,6 +1,6 @@
 name:                hs-exchange
 version:             0.1.0.0
-synopsis:
+synopsis:            Haskell Exchange 2016 repo for talk on servant-quickcheck and friends
 description:         Please see README.md
 homepage:            http://github.com/jkarni/hs-exchange#readme
 license:             BSD3
@@ -9,14 +9,17 @@ author:              Julian K. Arni
 maintainer:          jkarni@gmail.com
 copyright:           (c) Julian K. Arni
 github:              jkarni/hs-exchange
-tested-with:         GHC == 7.8.3, GHC == 7.10.2, GHC == 8.0.1
+tested-with:         GHC == 7.10.3
+data-files:          sql/schema.sql
 
 ghc-options: -Wall
 
 dependencies:
   - base >= 4.7 && < 4.10
   - text
-  - servant
+  - bytestring == 0.10.*
+  - servant == 0.7.*
+  - servant-server == 0.7.*
   - servant-quickcheck
   - hspec
 
@@ -52,4 +55,6 @@ tests:
       - hs-exchange
       - hspec > 2 && < 3
       - QuickCheck >= 2.8 && < 2.9
+      - servant-client == 0.7.*
       - process
+      - random

@@ -1,14 +1,22 @@
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 module Linnaen
-  ( run
-  , LinnaenAPI
+  ( LinnaenAPI
+  , linnaenAPI
+  , linnaenServer
+  , DBSettings(..)
   ) where
 
-type LinnaenAPI = _
+import Data.String (IsString)
+import Data.ByteString (ByteString)
+import Servant
+
+type LinnaenAPI = ()
 
 linnaenAPI :: Proxy LinnaenAPI
 linnaenAPI = Proxy
 
-run :: Config -> IO ()
-run =
+linnaenServer :: DBSettings -> IO (Server LinnaenAPI)
+linnaenServer = error "not implemented"
 
-data Config
+newtype DBSettings = DBSettings { getDBSettings :: ByteString }
+  deriving (Eq, Show, Read, IsString)

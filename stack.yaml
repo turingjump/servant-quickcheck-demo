@@ -1,6 +1,6 @@
 flags: {}
 packages:
 - '.'
-extra-deps:
-- servant-quickcheck-0.0.0.0
+- '../servant-quickcheck'
+extra-deps: []
 resolver: lts-6.7
