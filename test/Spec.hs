@@ -37,7 +37,8 @@ rewriteSpec = describe "the application" $ do
 -- command-line argument in the 'legacy' repository.
 withLegacyApplication :: DBSettings -> IO a -> IO a
 withLegacyApplication settings action
-  = bracket (spawnCommand $ "./legacy/run-app " <> unpack (getDBSettings settings))
+  = bracket (spawnCommand $ "./legacy/run-app " <> show legacyPort
+                         <> " " <> dbName settings)
             terminateProcess
             (const action)
 
@@ -50,7 +51,8 @@ withTestDatabase action = do
   schemaFile <- getDataFileName "test/schema.sql"
 
   callCommand $ createDB name
-  callCommand $ "psql --file '" <> schemaFile <> "' " <> name <> " >/dev/null 2>/dev/null"
+  callCommand $ "psql --file '" <> schemaFile <> "' " <> name
+             <> " >/dev/null 2>/dev/null"
   result <- action $ fromString name
   callCommand $ dropDB name
   return result
@@ -59,4 +61,7 @@ withTestDatabase action = do
     createDB name = "createdb " <> name <> " >/dev/null 2>/dev/null || true"
 
 legacyUrl :: BaseUrl
-legacyUrl = BaseUrl Http "localhost" 8081 ""
+legacyUrl = BaseUrl Http "localhost" legacyPort ""
+
+legacyPort :: Int
+legacyPort = 8081

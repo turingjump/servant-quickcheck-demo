@@ -22,6 +22,9 @@ dependencies:
   - servant-server == 0.7.*
   - servant-quickcheck
   - hspec
+  - comonad
+  - free
+  - adjunctions
 
 
 default-extensions:
