@@ -1,15 +1,14 @@
-module Spec (main) where
+module Main (main) where
 
 import Control.Exception  (bracket)
 import Data.Monoid
 import Data.String (fromString)
-import Data.ByteString.Char8 (unpack)
 import Servant.Client
 import Servant.QuickCheck
 import System.Process     (spawnCommand, terminateProcess)
 import System.Process     (callCommand)
 import System.Random (randomIO)
-import Test.Hspec         (Spec, describe, hspec, it, pending)
+import Test.Hspec         (Spec, describe, hspec, it)
 
 import Linnaen
 import Paths_hs_exchange
@@ -47,12 +46,12 @@ withLegacyApplication settings action
 -- Assumes you are using PostgreSQL.
 withTestDatabase :: (DBSettings -> IO a) -> IO a
 withTestDatabase action = do
-  name       <- (\x -> "linnaen_test_" <> show x) <$> (randomIO :: IO Int)
-  schemaFile <- getDataFileName "test/schema.sql"
+  name       <- (\x -> "linnaen_test_" <> show x) <$> (abs <$> randomIO :: IO Int)
+  schemaFile <- getDataFileName "sql/schema.sql"
 
   callCommand $ createDB name
   callCommand $ "psql --file '" <> schemaFile <> "' " <> name
-             <> " >/dev/null 2>/dev/null"
+             <> " >/dev/null"
   result <- action $ fromString name
   callCommand $ dropDB name
   return result
