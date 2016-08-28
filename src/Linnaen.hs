@@ -8,9 +8,10 @@ module Linnaen
 import Data.String (IsString(fromString))
 import Servant
 
--- | We start off with a completely empty API.
--- This won't even typecheck.
-type LinnaenAPI = ()
+import Linnaen.Types
+
+-- | We now add a single endpoint
+type LinnaenAPI = "family" :> Get '[JSON] [Family]
 
 linnaenAPI :: Proxy LinnaenAPI
 linnaenAPI = Proxy

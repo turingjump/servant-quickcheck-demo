@@ -1,17 +1,31 @@
-# servant-quickcheck - Step 1
+# servant-quickcheck - Step 2
 
-The first thing to do is to get the testing setup right. We do this in the
-'test/Spec.hs' file. Since we want to initially test that two applications
-match one another in behaviour, we need to start the two applications before
-running the test (`serversEqual`). We also write a SQL file (`sql/schema.sql`)
-that sets up our database schema.
+We start with a single endpoint.
 
-# Running the tests
+    type LinnaenAPI = "family" :> Get '[JSON] [Family]
 
-Run:
+We haven't implemented it yet:
 
-    stack test
+    linnaenServer :: DBSettings -> IO (Server LinnaenAPI)
+    linnaenServer = error "not implemented"
 
-Note that for now, `src/Linnaen.hs` is just a stub. It doesn't even typecheck,
-since we don't yet have any endpoints and `servant` won't let us run an
-application without endpoints. The next step is adding an endpoint.
+Which our tests immediately notice:
+
+    $ stack test
+
+    the application
+      should match the behaviour of the legacy application FAILED [1]
+
+    Failures:
+
+      test/Spec.hs:24:
+      1) the application should match the behaviour of the legacy application
+           uncaught exception: ErrorCall (not implemented)
+
+    Randomized with seed 294547665
+
+    Finished in 0.6558 seconds
+    1 example, 1 failure
+
+
+Let's actually implement it.

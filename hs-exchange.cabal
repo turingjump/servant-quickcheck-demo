@@ -27,7 +27,7 @@ source-repository head
 library
   hs-source-dirs:
       src
-  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveFunctor DeriveGeneric DeriveFoldable DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses OverloadedStrings RankNTypes ScopedTypeVariables TypeOperators
+  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses OverloadedStrings RankNTypes ScopedTypeVariables TypeOperators
   ghc-options: -Wall
   build-depends:
       base >= 4.7 && < 4.10
@@ -40,8 +40,11 @@ library
     , comonad
     , free
     , adjunctions
+    , aeson
   exposed-modules:
       Linnaen
+      Linnaen.DB
+      Linnaen.Types
   default-language: Haskell2010
 
 test-suite spec
@@ -49,7 +52,7 @@ test-suite spec
   main-is: Spec.hs
   hs-source-dirs:
       test
-  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveFunctor DeriveGeneric DeriveFoldable DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses OverloadedStrings RankNTypes ScopedTypeVariables TypeOperators
+  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses OverloadedStrings RankNTypes ScopedTypeVariables TypeOperators
   ghc-options: -Wall
   build-depends:
       base >= 4.7 && < 4.10
@@ -62,6 +65,7 @@ test-suite spec
     , comonad
     , free
     , adjunctions
+    , aeson
     , hs-exchange
     , hspec > 2 && < 3
     , QuickCheck >= 2.8 && < 2.9

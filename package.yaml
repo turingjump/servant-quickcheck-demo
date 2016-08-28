@@ -25,6 +25,7 @@ dependencies:
   - comonad
   - free
   - adjunctions
+  - aeson
 
 
 default-extensions:
@@ -32,9 +33,10 @@ default-extensions:
   - ConstraintKinds
   - DataKinds
   - DefaultSignatures
+  - DeriveAnyClass
+  - DeriveFoldable
   - DeriveFunctor
   - DeriveGeneric
-  - DeriveFoldable
   - DeriveTraversable
   - FlexibleContexts
   - FlexibleInstances
