@@ -41,6 +41,7 @@ library
     , free
     , adjunctions
     , aeson
+    , hasql-class
   exposed-modules:
       Linnaen
       Linnaen.DB
@@ -66,6 +67,7 @@ test-suite spec
     , free
     , adjunctions
     , aeson
+    , hasql-class
     , hs-exchange
     , hspec > 2 && < 3
     , QuickCheck >= 2.8 && < 2.9

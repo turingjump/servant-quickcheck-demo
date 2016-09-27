@@ -1,6 +1,7 @@
 flags: {}
 packages:
 - '.'
-- '../../servant-quickcheck'
-extra-deps: []
+extra-deps:
+- 'hasql-class-0.0.0.0'
+- 'servant-quickcheck-0.0.1.1'
 resolver: lts-6.7
